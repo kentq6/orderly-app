@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Header } from '../components/Header';
 import CheckmarkIcon from '../assets/images/icons/checkmark.png'
@@ -8,9 +9,12 @@ export function HomePage() {
 
   useEffect(() => {
     async function loadProducts() {
-      const res = await fetch('http://localhost:3000/api/products');
-      const data = await res.json();
-      setProducts(data);
+      try {
+        const res = await axios.get('http://localhost:3000/api/products');
+        setProducts(res.data);
+      } catch (e) {
+        console.error("Failed to load products:", e);
+      }
     }
     loadProducts();
   }, []);
