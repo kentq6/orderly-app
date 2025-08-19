@@ -12,14 +12,14 @@ function App() {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/cart-items')
+    axios.get('/api/cart-items?expand=product')
       .then((res) => {
         setCart(res.data);
       })
       .catch((e) => {
         console.error("Failed to load products:", e);
       });
-  });
+  }, []);
 
   return (
     <Routes>
