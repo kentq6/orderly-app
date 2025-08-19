@@ -1,9 +1,20 @@
+import { useState, useEffect } from 'react';
 import { Header } from '../components/Header';
-import { products } from '../../starting-code/data/products'
 import CheckmarkIcon from '../assets/images/icons/checkmark.png'
 import './HomePage.css';
 
 export function HomePage() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    async function loadProducts() {
+      const res = await fetch('http://localhost:3000/api/products');
+      const data = await res.json();
+      setProducts(data);
+    }
+    loadProducts();
+  }, []);
+
   return (
     <>
       <title>E-Commerce Project</title>
