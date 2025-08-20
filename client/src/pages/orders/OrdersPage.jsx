@@ -11,10 +11,12 @@ export function OrdersPage({ cart }) {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/orders?expand=products')
-      .then((res) => {
-        setOrders(res.data);
-      })
+    const getOrdersData = async () => {
+      const response = await axios.get('/api/orders?expand=products');
+      setOrders(response.data);
+    }
+    getOrdersData()
+      .catch((e) => { console.error('Failed to get orders data: ', e) });
   }, []);
 
   return (
@@ -22,7 +24,7 @@ export function OrdersPage({ cart }) {
       <title>Orders</title>
       <link rel="icon" type="image/svg+xml" href="/order-favicon.png" />
 
-      <Header cart={cart}/>
+      <Header cart={cart} />
 
       <div className="orders-page">
         <div className="page-title">Your Orders</div>

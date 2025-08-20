@@ -12,20 +12,19 @@ function App() {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/cart-items?expand=product')
-      .then((res) => {
-        setCart(res.data);
-      })
-      .catch((e) => {
-        console.error("Failed to load products:", e);
-      });
+    const fetchAppData = async () => {
+      const response = await axios.get('/api/cart-items?expand=product');
+      setCart(response.data);
+    }
+    fetchAppData()
+      .catch((e) => { console.error('Failed to get app data: ', e) });
   }, []);
 
   return (
     <Routes>
-      <Route index element={<HomePage cart={cart}/>} />
-      <Route path="/checkout" element={<CheckoutPage cart={cart}/>} />
-      <Route path="/orders" element={<OrdersPage cart={cart}/>} />
+      <Route index element={<HomePage cart={cart} />} />
+      <Route path="/checkout" element={<CheckoutPage cart={cart} />} />
+      <Route path="/orders" element={<OrdersPage cart={cart} />} />
       <Route path="/tracking" element={<TrackingPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>

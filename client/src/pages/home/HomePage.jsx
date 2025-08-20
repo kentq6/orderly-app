@@ -8,13 +8,12 @@ export function HomePage({ cart }) {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/products')
-      .then((res) => {
-        setProducts(res.data);
-      })
-      .catch((e) => {
-        console.error("Failed to load products:", e);
-      });
+    const getHomeData = async () => {
+      const response = await axios.get('/api/products');
+      setProducts(response.data);
+    }
+    getHomeData()
+      .catch((e) => { console.error('Failed to get products data: ', e) });
   }, []);
 
   return (
@@ -25,7 +24,7 @@ export function HomePage({ cart }) {
       <Header cart={cart} />
 
       <div className="home-page">
-        <ProductsGrid products={products}/>
+        <ProductsGrid products={products} />
       </div>
     </>
   );

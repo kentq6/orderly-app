@@ -10,21 +10,14 @@ export function CheckoutPage({ cart }) {
   const [paymentSummary, setPaymentSummary] = useState(null);
 
   useEffect(() => {
-    axios.get('/api/delivery-options?expand=estimatedDeliveryTime')
-      .then((res) => {
-        setDeliveryOptions(res.data);
-      })
-      .catch((e) => {
-        console.error('Failed to get delivery data: ', e);
-      });
-
-    axios.get('/api/payment-summary')
-      .then((res) => {
-        setPaymentSummary(res.data);
-      })
-      .catch((e) => {
-        console.error('Failed to get payment data: ', e);
-      })
+    const getCheckoutData = async () => {
+      let response = await axios.get('/api/delivery-options?expand=estimatedDeliveryTime');
+      setDeliveryOptions(response.data);
+      response = await axios.get('/api/payment-summary');
+      setPaymentSummary(response.data);
+    }
+    getCheckoutData()
+      .catch((e) => { console.error('Failed to get checkout data: ', e) });
   }, []);
 
   return (
@@ -43,7 +36,7 @@ export function CheckoutPage({ cart }) {
             deliveryOptions={deliveryOptions}
           />
 
-          <PaymentSummary 
+          <PaymentSummary
             paymentSummary={paymentSummary}
           />
         </div>
