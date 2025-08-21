@@ -8,12 +8,12 @@ export function HomePage({ cart }) {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const getHomeData = async () => {
+    const fetchHomeData = async () => {
       const response = await axios.get('/api/products');
       setProducts(response.data);
     }
-    getHomeData()
-      .catch((e) => { console.error('Failed to get products data: ', e) });
+    fetchHomeData()
+      .catch((e) => { console.error('Failed to fetch products data: ', e) });
   }, []);
 
   return (

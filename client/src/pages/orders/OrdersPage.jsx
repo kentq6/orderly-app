@@ -8,12 +8,12 @@ export function OrdersPage({ cart }) {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    const getOrdersData = async () => {
+    const fetchOrdersData = async () => {
       const response = await axios.get('/api/orders?expand=products');
       setOrders(response.data);
     }
-    getOrdersData()
-      .catch((e) => { console.error('Failed to get orders data: ', e) });
+    fetchOrdersData()
+      .catch((e) => { console.error('Failed to fetch orders data: ', e) });
   }, []);
 
   return (
