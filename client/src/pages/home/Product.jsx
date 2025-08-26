@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 export function Product({ product, loadCart }) {
   const [quantity, setQuantity] = useState(1);
-  const [addedMessage, setAddedMessage] = useState(false);
+  const [showAddedMessage, setShowAddedMessage] = useState(false);
 
   const selectQuantity = (event) => {
     const quantitySelected = Number(event.target.value);
@@ -18,8 +18,8 @@ export function Product({ product, loadCart }) {
       quantity
     });
     await loadCart();
-    setAddedMessage(true);
-    setTimeout(() => { setAddedMessage(false) }, 2000);
+    setShowAddedMessage(true);
+    setTimeout(() => { setShowAddedMessage(false) }, 2000);
   };
 
   return (
@@ -62,7 +62,7 @@ export function Product({ product, loadCart }) {
 
       <div className="product-spacer"></div>
 
-      <div className="added-to-cart" style={{ opacity: addedMessage ? 1 : 0 }}>
+      <div className="added-to-cart" style={{ opacity: showAddedMessage ? 1 : 0 }}>
         <img src={CheckmarkIcon} />
         Added
       </div>
