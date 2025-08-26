@@ -10,18 +10,24 @@ export function CheckoutPage({ cart, loadCart }) {
   const [paymentSummary, setPaymentSummary] = useState(null);
 
   useEffect(() => {
-    const fetchCheckoutData = async () => {
+    const fetchDeliveryOptionsData = async () => {
       let response = await axios.get(
         '/api/delivery-options?expand=estimatedDeliveryTime'
       );
-
       setDeliveryOptions(response.data);
+    }
+    fetchDeliveryOptionsData().catch((e) => {
+      console.error('Failed to fetch checkout data: ', e)
+    });
+  }, []);
 
-      response = await axios.get('/api/payment-summary');
+  useEffect(() => {
+    const fetchPaymentSummaryData = async () => {
+      const response = await axios.get('/api/payment-summary');
       setPaymentSummary(response.data);
     }
-    fetchCheckoutData().catch((e) => {
-      console.error('Failed to fetch checkout data: ', e)
+    fetchPaymentSummaryData().catch((e) => {
+      console.error('Failed to fetch payment summary data: ', e)
     });
   }, [cart]);
 
