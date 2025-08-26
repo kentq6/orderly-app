@@ -32,7 +32,8 @@ function App() {
         loadCart={loadCart} 
       />} />
       <Route path="/orders" element={<OrdersPage 
-        cart={cart} 
+        cart={cart}
+        loadCart={loadCart}
       />} />
       <Route path="/tracking/:orderId/:productId" element={<TrackingPage 
         cart={cart} 
