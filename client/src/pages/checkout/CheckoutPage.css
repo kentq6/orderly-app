@@ -149,10 +149,14 @@
 .checkout-page .delivery-option-input {
   margin: 3px 5px 0px 0px;
   cursor: pointer;
+  outline: none;
+}
+
+.checkout-page .delivery-option-input:hover {
+  scale: 1.1;
 }
 
 .checkout-page .delivery-option-date {
-
   font-weight: 500;
   margin-bottom: 3px;
 }

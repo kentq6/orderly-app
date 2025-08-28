@@ -36,6 +36,7 @@ input, select, button {
 .button-primary:hover {
   background-color: rgba(25, 135, 84, 0.75);
   border: 1px solid transparent;
+  scale: 1.05;
 }
 
 .button-primary:active {

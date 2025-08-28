@@ -155,3 +155,7 @@
   height: 34px;
   margin-top: 1px;
 }
+
+.home-page .add-to-cart-button:hover {
+  background-color: rgb(13, 110, 253);
+}

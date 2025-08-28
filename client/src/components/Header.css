@@ -35,7 +35,7 @@
 }
 
 .header .header-link:hover {
-  border: 1px solid white;
+  scale: 1.05;
 }
 
 .header .logo {
@@ -94,6 +94,10 @@
   height: 20px;
   margin-left: 0px;
   margin-top: 3px;
+}
+
+.header .search-icon:hover {
+  scale: 1.1;
 }
 
 .header .right-section {
