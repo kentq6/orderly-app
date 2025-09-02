@@ -14,4 +14,7 @@ export default defineConfig({
       }
     }
   },
+  "compilerOptions": {
+    "jsx": "react-jsx"
+  }
 })
