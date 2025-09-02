@@ -71,6 +71,7 @@ export function Product({ product, loadCart }) {
 
       <button
         className="add-to-cart-button button-primary"
+        data-testid="add-to-cart-button"
         onClick={addToCart}>
         Add to Cart
       </button>
