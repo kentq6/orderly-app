@@ -31,10 +31,12 @@ describe('Product component', () => {
     loadCart = vi.fn();
     
     user = userEvent.setup();
+
+    render(<Product product={product} loadCart={loadCart} />);
   });
 
   it('displays the product details correctly', () => {
-    render(<Product product={product} loadCart={loadCart} />);
+    // render(<Product product={product} loadCart={loadCart} />);
 
     // Checks if element exists on the screen
     expect(
@@ -60,7 +62,7 @@ describe('Product component', () => {
   });
 
   it('adds a product to the cart', async () => {
-    render(<Product product={product} loadCart={loadCart} />);
+    // render(<Product product={product} loadCart={loadCart} />);
 
     const addToCartButton = screen.getByTestId('add-to-cart-button');
     await user.click(addToCartButton);
@@ -77,7 +79,7 @@ describe('Product component', () => {
   });
 
   it('selects a quantity', async () => {
-    render(<Product product={product} loadCart={loadCart} />);
+    // render(<Product product={product} loadCart={loadCart} />);
     
     const quantitySelector = screen.getByTestId('product-quantity-selector');
     expect(quantitySelector).toHaveValue('1');
