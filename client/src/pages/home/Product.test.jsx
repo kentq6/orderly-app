@@ -11,6 +11,7 @@ vi.mock('axios');
 describe('Product component', () => {
   let product;
   let loadCart;
+  let user;
 
   // Runs some code before each test
   beforeEach(() => {
@@ -25,9 +26,11 @@ describe('Product component', () => {
       priceCents: 1090,
       keywords: ["socks", "sports", "apparel"]
     };
-
+    
     // vi.fi() creates a mock function that doesn't do anything
     loadCart = vi.fn();
+    
+    user = userEvent.setup();
   });
 
   it('displays the product details correctly', () => {
@@ -59,7 +62,6 @@ describe('Product component', () => {
   it('adds a product to the cart', async () => {
     render(<Product product={product} loadCart={loadCart} />);
 
-    const user = userEvent.setup();
     const addToCartButton = screen.getByTestId('add-to-cart-button');
     await user.click(addToCartButton);
 
@@ -73,4 +75,27 @@ describe('Product component', () => {
 
     expect(loadCart).toHaveBeenCalled();
   });
+
+  it('selects a quantity', async () => {
+    render(<Product product={product} loadCart={loadCart} />);
+    
+    const quantitySelector = screen.getByTestId('product-quantity-selector');
+    expect(quantitySelector).toHaveValue('1');
+    
+    await user.selectOptions(quantitySelector, '3');
+    expect(quantitySelector).toHaveValue('3');
+
+    const addToCartButton = screen.getByTestId('add-to-cart-button');
+    await user.click(addToCartButton);
+
+    expect(axios.post).toHaveBeenCalledWith(
+      '/api/cart-items',
+      {
+        productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
+        quantity: 3
+      }
+    );
+
+    expect(loadCart).toHaveBeenCalled();
+  })
 });
