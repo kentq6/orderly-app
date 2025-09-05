@@ -66,7 +66,7 @@ export function Header({ cart }) {
           <span className="orders-text">Orders</span>
         </NavLink>
 
-        <NavLink className="cart-link header-link" to="/checkout">
+        <NavLink className="cart-link header-link" to="/checkout" data-testid="checkout-link">
           <img className="cart-icon" data-testid="cart-icon-image" src={CartIcon} />
           <div className="cart-quantity" data-testid="cart-quantity">{totalQuantity}</div>
           <div className="cart-text">Cart</div>

@@ -156,7 +156,7 @@ describe('Header componnet', () => {
     expect(screen.getByTestId('url-path')).toHaveTextContent('/orders');
   });
   
-  it('redirects to orders page', async () => {
+  it('redirects to checkout page', async () => {
     render(
       <MemoryRouter>
         <Header cart={cart} />
@@ -164,9 +164,9 @@ describe('Header componnet', () => {
       </MemoryRouter>
     );
 
-    const ordersLink = screen.getByTestId('orders-link');
-    await user.click(ordersLink);
+    const checkoutLink = screen.getByTestId('checkout-link');
+    await user.click(checkoutLink);
 
-    expect(screen.getByTestId('url-path')).toHaveTextContent('/orders');
+    expect(screen.getByTestId('url-path')).toHaveTextContent('/checkout');
   });
 });
