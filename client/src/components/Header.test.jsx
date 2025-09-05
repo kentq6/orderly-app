@@ -101,8 +101,12 @@ describe('Header componnet', () => {
     ).toHaveAttribute('src', '/src/assets/images/icons/cart-icon.png');
 
     expect(
-      screen.getByTestId('cart-quantity')
+      screen.getByTestId('cart-link')
     ).toHaveTextContent('3');
+
+    expect(
+      screen.getByTestId('cart-link')
+    ).toHaveAttribute('href', '/checkout');
   })
 
   it('redirects to home', async () => {
@@ -163,7 +167,7 @@ describe('Header componnet', () => {
       </MemoryRouter>
     );
 
-    const checkoutLink = screen.getByTestId('checkout-link');
+    const checkoutLink = screen.getByTestId('cart-link');
     await user.click(checkoutLink);
 
     expect(screen.getByTestId('url-path')).toHaveTextContent('/checkout');
