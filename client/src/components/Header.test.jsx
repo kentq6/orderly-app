@@ -155,4 +155,18 @@ describe('Header componnet', () => {
 
     expect(screen.getByTestId('url-path')).toHaveTextContent('/orders');
   });
+  
+  it('redirects to orders page', async () => {
+    render(
+      <MemoryRouter>
+        <Header cart={cart} />
+        <Location />
+      </MemoryRouter>
+    );
+
+    const ordersLink = screen.getByTestId('orders-link');
+    await user.click(ordersLink);
+
+    expect(screen.getByTestId('url-path')).toHaveTextContent('/orders');
+  });
 });
