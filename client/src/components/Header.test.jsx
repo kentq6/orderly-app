@@ -100,4 +100,23 @@ describe('Header componnet', () => {
       screen.getByTestId('cart-quantity')
     ).toHaveTextContent('3');
   })
+
+  it('redirects to home', async () => {
+    function Location() {
+      const location = useLocation();
+      return <div data-testid="url-path">{location.pathname}</div>;
+    }
+
+    render(
+      <MemoryRouter>
+        <Header cart={cart} />
+        <Location />
+      </MemoryRouter>
+    );
+
+    const homeButton = screen.getByTestId('logo-white-image');
+    await user.click(homeButton);
+
+    expect(screen.getByTestId('url-path')).toHaveTextContent('/');
+  });
 });
