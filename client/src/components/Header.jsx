@@ -32,7 +32,7 @@ export function Header({ cart }) {
     <div className="header">
       <div className="left-section">
         <NavLink to="/" className="header-link">
-          <img className="logo"
+          <img className="logo" data-testid="logo-white-image"
             src={LogoWhite} />
           <img className="mobile-logo"
             src={MobileLogoWhite} />
@@ -41,14 +41,16 @@ export function Header({ cart }) {
 
       <div className="middle-section">
         <input 
-          className="search-bar" 
+          className="search-bar"
+          data-testid="search-bar-input" 
           type="text" 
           placeholder="Search" 
           onChange={updateSearchInput} 
         />
 
         <button className="search-button" onClick={searchProducts}>
-          <img className="search-icon" src={SearchIcon} />
+          <img className="search-icon" src={SearchIcon}
+          data-testid="search-button" />
         </button>
       </div>
 
@@ -59,8 +61,8 @@ export function Header({ cart }) {
         </NavLink>
 
         <NavLink className="cart-link header-link" to="/checkout">
-          <img className="cart-icon" src={CartIcon} />
-          <div className="cart-quantity">{totalQuantity}</div>
+          <img className="cart-icon" data-testid="cart-icon-image" src={CartIcon} />
+          <div className="cart-quantity" data-testid="cart-quantity">{totalQuantity}</div>
           <div className="cart-text">Cart</div>
         </NavLink>
       </div>
