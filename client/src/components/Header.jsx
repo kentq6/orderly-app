@@ -22,6 +22,11 @@ export function Header({ cart }) {
     navigate(`/?search=${search}`);
   };
 
+  function handleKeyDown(event) {
+    if (event.key === 'Enter') searchProducts();
+    if (event.key === 'Escape') setSearch('');
+  }
+
   let totalQuantity = 0;
 
   cart.forEach((cartItem) => {
@@ -47,6 +52,7 @@ export function Header({ cart }) {
           placeholder="Search" 
           value={search}
           onChange={updateSearchInput} 
+          onKeyDown={handleKeyDown}
         />
 
         <button className="search-button" onClick={searchProducts}>
