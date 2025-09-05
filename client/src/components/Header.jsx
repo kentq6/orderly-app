@@ -45,6 +45,7 @@ export function Header({ cart }) {
           data-testid="search-bar-input" 
           type="text" 
           placeholder="Search" 
+          value={search}
           onChange={updateSearchInput} 
         />
 
@@ -55,8 +56,7 @@ export function Header({ cart }) {
       </div>
 
       <div className="right-section">
-        <NavLink className="orders-link header-link" to="/orders">
-
+        <NavLink className="orders-link header-link" to="/orders" data-testid="orders-link">
           <span className="orders-text">Orders</span>
         </NavLink>
 
