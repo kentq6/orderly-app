@@ -19,7 +19,7 @@ export function PaymentSummary({ paymentSummary, loadCart }) {
       {paymentSummary && (
         <>
           <div className="payment-summary-row">
-            <div>Items ({paymentSummary.totalItems}):</div>
+            <div data-testid="payment-summary-items">Items ({paymentSummary.totalItems}):</div>
             <div className="payment-summary-money"
               data-testid="payment-summary-product-cost">
                 {formatMoney(paymentSummary.productCostCents)}

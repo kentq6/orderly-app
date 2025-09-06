@@ -28,12 +28,12 @@ describe('PaymentSummary component', () => {
     );
 
     expect(
-      screen.getByText('Items (7):')
+      screen.getByText('Items (3):')
     ).toBeInTheDocument();
 
     expect(
       screen.getByTestId('payment-summary-product-cost')
-    ).toHaveTextContent('$76.30');
+    ).toHaveTextContent('$42.75');
 
     expect(
       screen.getByTestId('payment-summary-shipping-cost')
@@ -41,15 +41,15 @@ describe('PaymentSummary component', () => {
 
     expect(
       screen.getByTestId('payment-summary-total-cost-before-tax')
-    ).toHaveTextContent('$76.30');
+    ).toHaveTextContent('$42.75');
 
     expect(
       screen.getByTestId('payment-summary-tax')
-    ).toHaveTextContent('$7.63');
+    ).toHaveTextContent('$4.28');
 
     expect(
       screen.getByTestId('payment-summary-total-cost')
-    ).toHaveTextContent('$83.93');
+    ).toHaveTextContent('$47.03');
   });
 
   it('places an order', async () => {
