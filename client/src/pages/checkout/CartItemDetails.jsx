@@ -36,7 +36,8 @@ export function CartItemDetails({ cartItem, loadCart }) {
   return (
     <Fragment>
       <img className="product-image"
-        src={cartItem.product.image} />
+        src={cartItem.product.image}
+        data-testid="product-image" />
 
       <div className="cart-item-details">
         <div className="product-name">
@@ -45,28 +46,29 @@ export function CartItemDetails({ cartItem, loadCart }) {
         <div className="product-price">
           {formatMoney(cartItem.product.priceCents)}
         </div>
-        <div className="product-quantity">
+        <div className="product-quantity" data-testid="product-quantity">
           <span>
             Quantity: {isUpdatingQuantity
-              ? <input type="text" 
+              ? <input type="text"
                 className="quantity-textbox"
-                value={quantity} 
+                value={quantity}
                 onChange={updateQuantityInput}
-                onKeyDown={handleQuantityKeyDown}/>
-              : <span className="quantity-label">{cartItem.quantity}</span>
+                onKeyDown={handleQuantityKeyDown}
+                data-testid="quantity-textbox" />
+              : <span className="quantity-label" data-testid="quantity-label">{cartItem.quantity}</span>
             }
           </span>
-          <span 
-            className="update-quantity-link link-primary"
-            onClick={() => { 
+          <span
+            className="update-quantity-link link-primary" data-testid="update-button"
+            onClick={() => {
               setIsUpdatingQuantity(!isUpdatingQuantity);
               updateQuantity();
             }}>
-                Update
+            Update
           </span>
-          <span className="delete-quantity-link link-primary"
+          <span className="delete-quantity-link link-primary" data-testid="delete-button"
             onClick={deleteCartItem}>
-              Delete
+            Delete
           </span>
         </div>
       </div>

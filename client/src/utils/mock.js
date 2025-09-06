@@ -59,3 +59,30 @@ export const paymentSummary =
   "taxCents": 763,
   "totalCostCents": 8393
 }
+
+export const deliveryOptions = [
+  {
+    "id": "1",
+    "deliveryDays": 7,
+    "priceCents": 0,
+    "createdAt": "2025-08-26T17:36:02.611Z",
+    "updatedAt": "2025-08-26T17:36:02.611Z",
+    "estimatedDeliveryTimeMs": 1757725822623
+  },
+  {
+    "id": "2",
+    "deliveryDays": 3,
+    "priceCents": 499,
+    "createdAt": "2025-08-26T17:36:02.612Z",
+    "updatedAt": "2025-08-26T17:36:02.612Z",
+    "estimatedDeliveryTimeMs": 1757380222623
+  },
+  {
+    "id": "3",
+    "deliveryDays": 1,
+    "priceCents": 999,
+    "createdAt": "2025-08-26T17:36:02.613Z",
+    "updatedAt": "2025-08-26T17:36:02.613Z",
+    "estimatedDeliveryTimeMs": 1757207422623
+  }
+];
