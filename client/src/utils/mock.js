@@ -49,3 +49,13 @@ export const cart = [
     }
   }
 ];
+
+export const paymentSummary =
+{
+  "totalItems": 7,
+  "productCostCents": 7630,
+  "shippingCostCents": 0,
+  "totalCostBeforeTaxCents": 7630,
+  "taxCents": 763,
+  "totalCostCents": 8393
+}

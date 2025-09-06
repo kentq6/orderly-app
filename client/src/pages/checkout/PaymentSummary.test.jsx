@@ -2,6 +2,7 @@ import { it, expect, describe, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, useLocation } from 'react-router';
 import { PaymentSummary } from './PaymentSummary';
+import { paymentSummary as mockPaymentSummary } from '../../utils/mock'
 import axios from 'axios';
 import userEvent from '@testing-library/user-event';
 
@@ -13,15 +14,7 @@ describe('PaymentSummary component', () => {
   let user;
 
   beforeEach(() => {
-    paymentSummary =
-    {
-      "totalItems": 7,
-      "productCostCents": 7630,
-      "shippingCostCents": 0,
-      "totalCostBeforeTaxCents": 7630,
-      "taxCents": 763,
-      "totalCostCents": 8393
-    }
+    paymentSummary = mockPaymentSummary;
 
     loadCart = vi.fn();
     user = userEvent.setup();
