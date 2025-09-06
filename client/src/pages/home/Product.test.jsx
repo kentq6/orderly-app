@@ -29,7 +29,6 @@ describe('Product component', () => {
     
     // vi.fi() creates a mock function that doesn't do anything
     loadCart = vi.fn();
-    
     user = userEvent.setup();
 
     render(<Product product={product} loadCart={loadCart} />);

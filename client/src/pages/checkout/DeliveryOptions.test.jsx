@@ -12,6 +12,7 @@ describe('OrderSummary component', () => {
   let deliveryOptions;
   let cartItem;
   let loadCart;
+  let user;
 
   let freeShippingDate;
   let threeDayShippingDate;
@@ -29,6 +30,7 @@ describe('OrderSummary component', () => {
       .format('dddd, MMMM D');
 
     loadCart = vi.fn();
+    user = userEvent.setup();
 
     render(<DeliveryOptions deliveryOptions={deliveryOptions} cartItem={cartItem} loadCart={loadCart} />);
   });
@@ -47,8 +49,6 @@ describe('OrderSummary component', () => {
   });
 
   it('selects the different delivery option', async () => {
-    const user = userEvent.setup();
-
     // check if first option is selected
     expect(screen.getAllByTestId('delivery-option-input')[0]).toBeChecked();
 
