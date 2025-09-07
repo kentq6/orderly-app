@@ -3,7 +3,7 @@ import { it, expect, describe, vi, beforeEach } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
 import { MemoryRouter, useLocation } from 'react-router';
 import { OrderDetailsGrid } from './OrderDetailsGrid';
-import { ordersInfo as mockOrdersInfo } from '../../utils/mock';
+import { ordersDetails as mockOrdersDetails } from '../../utils/mock';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import userEvent from '@testing-library/user-event';
@@ -23,7 +23,7 @@ describe('OrderDetailsGrid component', () => {
   }
 
   beforeEach(async () => {
-    order = mockOrdersInfo[0];
+    order = mockOrdersDetails[0];
     loadCart = vi.fn();
     user = userEvent.setup();
 
