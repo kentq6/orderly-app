@@ -38,7 +38,7 @@ describe('OrderDetailsGrid component', () => {
     productActions = await screen.findAllByTestId('product-actions');
   });
 
-  it('displays the page correctly', async () => {
+  it('displays the order details correctly', async () => {
     const productImages = await screen.findAllByTestId('product-image-container');
 
     expect(
