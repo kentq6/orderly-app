@@ -48,8 +48,8 @@ export function TrackingPage({ cart }) {
 
       <div className="tracking-page">
         <div className="order-tracking">
-          <Link className="back-to-orders-link link-primary" to="/orders">
-            View all orders
+          <Link className="back-to-orders-link link-primary" to="/orders" data-testid="back-to-orders-link">
+            View All Orders
           </Link>
 
           <div className="delivery-date">
@@ -64,9 +64,9 @@ export function TrackingPage({ cart }) {
             Quantity: {orderProduct.quantity}
           </div>
 
-          <img className="product-image" src={orderProduct.product.image} />
+          <img className="product-image" src={orderProduct.product.image} data-testid="product-image"/>
 
-          <div className="progress-labels-container">
+          <div className="progress-labels-container" data-testid="progress-labels-container">
             <div className={`progress-label ${isPreparing && 'current-status'}`}>
               Preparing
             </div>
@@ -78,10 +78,10 @@ export function TrackingPage({ cart }) {
             </div>
           </div>
 
-          <div className="progress-bar-container">
+          <div className="progress-bar-container" data-testid="progress-bar-container">
             <div className="progress-bar" style={{ 
               width: `${deliveryPercent}%` 
-            }}></div>
+            }} data-testid="progress-bar"></div>
           </div>
         </div>
       </div>
