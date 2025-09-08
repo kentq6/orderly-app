@@ -1,11 +1,10 @@
 import { it, expect, describe, beforeEach, vi } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
-import { MemoryRouter, Routes, Route, useLocation } from 'react-router';
+import { MemoryRouter, Routes, Route } from 'react-router';
 import { TrackingPage } from './TrackingPage';
 import { cart as mockCart, ordersDetails as mockOrdersDetails } from '../../utils/mock';
 import axios from 'axios';
 import dayjs from 'dayjs';
-import userEvent from '@testing-library/user-event';
 
 vi.mock('axios');
 
