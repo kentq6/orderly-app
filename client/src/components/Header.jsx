@@ -55,7 +55,10 @@ export function Header({ cart }) {
           onKeyDown={handleKeyDown}
         />
 
-        <button className="search-button" onClick={searchProducts}>
+        <button 
+          className="search-button" 
+          onClick={searchProducts}
+        >
           <img className="search-icon" src={SearchIcon}
           data-testid="search-button" />
         </button>
