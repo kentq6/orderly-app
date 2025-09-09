@@ -8,12 +8,12 @@ import './Header.css';
 
 export function Header({ cart }) {
   const navigate = useNavigate();
-  
+
   const [searchParams] = useSearchParams();
   const searchText = searchParams.get('search');
-  
+
   const [search, setSearch] = useState(searchText || '');
-  
+
   const updateSearchInput = (event) => {
     setSearch(event.target.value);
   };
@@ -45,23 +45,25 @@ export function Header({ cart }) {
       </div>
 
       <div className="middle-section">
-        <input 
-          className="search-bar"
-          data-testid="search-bar-input" 
-          type="text" 
-          placeholder="Search" 
-          value={search}
-          onChange={updateSearchInput} 
-          onKeyDown={handleKeyDown}
-        />
+        <div className="search-container">
+          <input
+            className="search-bar"
+            data-testid="search-bar-input"
+            type="text"
+            placeholder="Search"
+            value={search}
+            onChange={updateSearchInput}
+            onKeyDown={handleKeyDown}
+          />
 
-        <button 
-          className="search-button" 
-          onClick={searchProducts}
-        >
-          <img className="search-icon" src={SearchIcon}
-          data-testid="search-button" />
-        </button>
+          <button
+            className="search-button"
+            onClick={searchProducts}
+          >
+            <img className="search-icon" src={SearchIcon}
+              data-testid="search-button" />
+          </button>
+        </div>
       </div>
 
       <div className="right-section">

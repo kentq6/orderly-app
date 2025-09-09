@@ -70,37 +70,52 @@
   display: flex;
 }
 
+.header .search-container {
+  position: relative;
+  flex: 1;
+  max-width: 600px;
+  margin: 0 24px;
+}
+
 .header .search-bar {
   flex: 1;
-  width: 0;
+  width: 100%;
   font-size: 16px;
   height: 38px;
   padding-left: 15px;
+  padding-right: 15px;
   border: none;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
+  border-radius: 20px;
 }
 
 .header .search-button {
   background-color: rgb(186, 255, 190);
   border: none;
-  width: 45px;
-  height: 40px;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
+  width: 30px;
+  height: 30px;
+  border-radius: 150px;
   flex-shrink: 0;
+
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  transform: translateY(-50%) translateX(50%);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease;
 }
 
 .header .search-icon {
-  height: 20px;
+  height: 15px;
   margin-left: 0px;
   margin-top: 3px;
 }
 
 .header .search-icon:hover {
-  scale: 1.1;
+  scale: 1.25;
 }
 
 .header .right-section {
