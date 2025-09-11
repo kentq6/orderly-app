@@ -18,6 +18,7 @@ export default defineConfig({
     "jsx": "react-jsx"
   },
   build: {
-    outDir: '../server/dist'
+    outDir: '../server/dist',
+    emptyOutDir: true,
   }
 })
