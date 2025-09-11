@@ -15,6 +15,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "archiver": "^7.0.1",
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "mysql2": "^3.14.1",
@@ -25,7 +26,6 @@
     "sql.js-as-sqlite3": "0.2.1"
   },
   "devDependencies": {
-    "archiver": "^7.0.1",
     "eslint": "^8.0.0",
     "nodemon": "^3.1.9"
   }
