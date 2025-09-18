@@ -2,20 +2,12 @@ import axios from 'axios';
 import CheckmarkIcon from '../../assets/images/icons/checkmark.png';
 import { formatMoney } from '../../utils/money';
 import { useState } from 'react';
-import type { LoadCart } from '../../types/loadCart.types';
+import type { ProductType } from '../../types/product.types';
+import type { LoadCartFunction } from '../../types/loadCart.types';
 
 type ProductProps = {
-  product: {
-    id: string;
-    name: string;
-    image: string;
-    priceCents: number;
-    rating: {
-      stars: number;
-      count: number;
-    };
-  };
-  loadCart: LoadCart;
+  product: ProductType;
+  loadCart: LoadCartFunction;
 };
 
 export function Product({ product, loadCart }: ProductProps) {

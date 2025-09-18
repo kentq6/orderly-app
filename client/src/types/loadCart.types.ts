@@ -1,1 +1,1 @@
-export type LoadCart = () => Promise<void>;
+export type LoadCartFunction = () => Promise<void>;
