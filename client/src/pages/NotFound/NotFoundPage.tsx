@@ -1,9 +1,9 @@
 import { Header } from '../../components/Header';
-import type { CartItem } from '../../types/cartItem.types';
+import type { Cart } from '../../types/cart.types';
 import './NotFoundPage.css';
 
 type NotFoundProp = {
-  cart: CartItem[];
+  cart: Cart;
 };
 
 export function NotFoundPage({ cart }: NotFoundProp) {

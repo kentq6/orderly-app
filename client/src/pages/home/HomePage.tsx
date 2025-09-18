@@ -4,11 +4,11 @@ import { Header } from '../../components/Header';
 import { ProductsGrid } from './ProductsGrid'
 import { useSearchParams } from 'react-router';
 import './HomePage.css';
-import type { CartItem } from '../../types/cartItem.types';
+import type { Cart } from '../../types/cart.types';
 import type { LoadCart } from '../../types/loadCart.types';
 
 type HomePageProps = {
-  cart: CartItem[];
+  cart: Cart;
   loadCart: LoadCart;
 };
 
