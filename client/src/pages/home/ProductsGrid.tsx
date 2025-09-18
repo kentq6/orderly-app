@@ -1,4 +1,4 @@
-import type { ProductType } from '../../types/product.types';
+import type { Product as ProductType } from '../../types/product.types';
 import type { LoadCart } from '../../types/loadCart.types';
 import { Product } from './Product';
 
