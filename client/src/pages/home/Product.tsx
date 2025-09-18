@@ -2,11 +2,11 @@ import axios from 'axios';
 import CheckmarkIcon from '../../assets/images/icons/checkmark.png';
 import { formatMoney } from '../../utils/money';
 import { useState } from 'react';
-import type { ProductType } from '../../types/product.types';
+import type { Product } from '../../types/product.types';
 import type { LoadCart } from '../../types/loadCart.types';
 
 type ProductProps = {
-  product: ProductType;
+  product: Product;
   loadCart: LoadCart;
 };
 
