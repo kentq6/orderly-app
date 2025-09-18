@@ -8,7 +8,7 @@ import './Header.css';
 import type { Cart } from '../types/cart.types';
 
 type HeaderProps = {
-  cart: Cart[];
+  cart: Cart;
 };
 
 export function Header({ cart }: HeaderProps) {

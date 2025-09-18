@@ -8,7 +8,7 @@ import type { Cart } from '../../types/cart.types';
 import type { LoadCart } from '../../types/loadCart.types';
 
 type HomePageProps = {
-  cart: Cart[];
+  cart: Cart;
   loadCart: LoadCart;
 };
 
