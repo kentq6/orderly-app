@@ -1,8 +1,34 @@
 import axios from 'axios';
 import { useState, Fragment } from 'react';
 import { formatMoney } from "../../utils/money";
+import type { LoadCart } from '../../types/loadCart.types';
 
-export function CartItemDetails({ cartItem, loadCart }) {
+type CartItemDetailsProps = {
+  cartItem: {
+    id: number;
+    productId: string;
+    quantity: number;
+    deliveryOptionId: number;
+    createdAt: string;
+    updatedAt: string;
+    product: {
+      keywords: string[];
+      id: string;
+      image: string;
+      name: string;
+      rating: {
+        stars: number;
+        count: number;
+      };
+      priceCents: number;
+      createdAt: string;
+      updatedAt: string;
+    };
+  };
+  loadCart: LoadCart;
+};
+
+export function CartItemDetails({ cartItem, loadCart }: CartItemDetailsProps) {
   const [isUpdatingQuantity, setIsUpdatingQuantity] = useState(false);
   const [quantity, setQuantity] = useState(cartItem.quantity);
 
@@ -18,11 +44,11 @@ export function CartItemDetails({ cartItem, loadCart }) {
     await loadCart();
   }
 
-  const updateQuantityInput = (event) => {
+  const updateQuantityInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuantity(Number(event.target.value));
   };
 
-  const handleQuantityKeyDown = (event) => {
+  const handleQuantityKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     const keyPressed = event.key;
 
     if (keyPressed === 'Enter') {
