@@ -5,13 +5,14 @@ import { ProductsGrid } from './ProductsGrid'
 import { useSearchParams } from 'react-router';
 import './HomePage.css';
 import type { Cart } from '../../types/cart.types';
+import type { LoadCart } from '../../types/loadCart.types';
 
-type HeaderProps = {
+type HomePageProps = {
   cart: Cart[];
-  loadCart: () => Promise<void>;
+  loadCart: LoadCart;
 };
 
-export function HomePage({ cart, loadCart }: HeaderProps) {
+export function HomePage({ cart, loadCart }: HomePageProps) {
   const [products, setProducts] = useState([]);
   const [searchParams] = useSearchParams();
   const search = searchParams.get('search');
