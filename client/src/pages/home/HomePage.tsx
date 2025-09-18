@@ -4,8 +4,14 @@ import { Header } from '../../components/Header';
 import { ProductsGrid } from './ProductsGrid'
 import { useSearchParams } from 'react-router';
 import './HomePage.css';
+import type { Cart } from '../../types/cart.types';
 
-export function HomePage({ cart, loadCart }) {
+type HeaderProps = {
+  cart: Cart[];
+  loadCart: () => Promise<void>;
+};
+
+export function HomePage({ cart, loadCart }: HeaderProps) {
   const [products, setProducts] = useState([]);
   const [searchParams] = useSearchParams();
   const search = searchParams.get('search');
