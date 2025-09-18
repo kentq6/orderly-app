@@ -5,13 +5,10 @@ import SearchIcon from '../assets/images/icons/search-icon.png';
 import LogoWhite from '../assets/images/logo-white.png';
 import MobileLogoWhite from '../assets/images/mobile-logo-white.png';
 import './Header.css';
+import type { Cart } from '../types/cart.types';
 
 type HeaderProps = {
-  cart: {
-    productId: string;
-    quantity: number;
-    deliveryOptionId: string;
-  }[];
+  cart: Cart[];
 };
 
 export function Header({ cart }: HeaderProps) {
