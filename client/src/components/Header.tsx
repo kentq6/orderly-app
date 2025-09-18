@@ -19,7 +19,7 @@ export function Header({ cart }: HeaderProps) {
 
   const [search, setSearch] = useState<string>(searchText || '');
 
-  const updateSearchInput: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+  const updateSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
   };
 
