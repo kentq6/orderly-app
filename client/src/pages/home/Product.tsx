@@ -2,12 +2,27 @@ import axios from 'axios';
 import CheckmarkIcon from '../../assets/images/icons/checkmark.png';
 import { formatMoney } from '../../utils/money';
 import { useState } from 'react';
+import type { LoadCart } from '../../types/loadCart.types';
 
-export function Product({ product, loadCart }) {
+type ProductProps = {
+  product: {
+    id: string;
+    name: string;
+    image: string;
+    priceCents: number;
+    rating: {
+      stars: number;
+      count: number;
+    };
+  };
+  loadCart: LoadCart;
+};
+
+export function Product({ product, loadCart }: ProductProps) {
   const [quantity, setQuantity] = useState(1);
   const [showAddedMessage, setShowAddedMessage] = useState(false);
 
-  const selectQuantity = (event) => {
+  const selectQuantity = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const quantitySelected = Number(event.target.value);
     setQuantity(quantitySelected);
   };
