@@ -3,8 +3,13 @@ import CheckoutLockIcon from '../../assets/images/icons/checkout-lock-icon.png';
 import Logo from '../../assets/images/logo.png';
 import MobileLogo from '../../assets/images/mobile-logo.png';
 import './CheckoutHeader.css';
+import type { Cart } from '../../types/cart.types';
 
-export function CheckoutHeader({ cart }) {
+type CheckoutHeaderProp = {
+  cart: Cart;
+};
+
+export function CheckoutHeader({ cart }: CheckoutHeaderProp) {
   let totalQuantity = 0;
   
   cart.forEach((cartItem) => {
