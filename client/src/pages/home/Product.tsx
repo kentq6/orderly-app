@@ -3,11 +3,11 @@ import CheckmarkIcon from '../../assets/images/icons/checkmark.png';
 import { formatMoney } from '../../utils/money';
 import { useState } from 'react';
 import type { ProductType } from '../../types/product.types';
-import type { LoadCartFunction } from '../../types/loadCart.types';
+import type { LoadCart } from '../../types/loadCart.types';
 
 type ProductProps = {
   product: ProductType;
-  loadCart: LoadCartFunction;
+  loadCart: LoadCart;
 };
 
 export function Product({ product, loadCart }: ProductProps) {
