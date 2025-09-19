@@ -11,7 +11,7 @@ type OrderSummaryProps = {
   loadCart: LoadCart;
 };
 
-export function OrderSummary({ cart, deliveryOptions, loadCart }: OrderSummaryProps ) {
+export function OrderSummary({ cart, deliveryOptions, loadCart }: OrderSummaryProps) {
   return (
     <div className="order-summary">
       {deliveryOptions.length > 0 && cart.map((cartItem) => {

@@ -11,7 +11,7 @@ type DeliveryOptionsProps = {
   loadCart: LoadCart;
 };
 
-export function DeliveryOptions({ deliveryOptions, cartItem, loadCart }: DeliveryOptionsProps ) {
+export function DeliveryOptions({ deliveryOptions, cartItem, loadCart }: DeliveryOptionsProps) {
   return (
     <div className="delivery-options">
       <div className="delivery-options-title">

@@ -7,7 +7,7 @@ type DeliveryDateProps = {
   deliveryOptions: DeliveryOptions;
 };
 
-export function DeliveryDate({ cartItem, deliveryOptions }: DeliveryDateProps ) {
+export function DeliveryDate({ cartItem, deliveryOptions }: DeliveryDateProps) {
   const selectedDeliveryOption = deliveryOptions.
     find((deliveryOption) => {
       return deliveryOption.id === cartItem.deliveryOptionId;

@@ -15,7 +15,7 @@ type PaymentSummaryProps = {
   loadCart: LoadCart;
 };
 
-export function PaymentSummary({ paymentSummary, loadCart }: PaymentSummaryProps ) {
+export function PaymentSummary({ paymentSummary, loadCart }: PaymentSummaryProps) {
   const navigate = useNavigate();
 
   const createOrder = async () => {
