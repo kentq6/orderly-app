@@ -18,8 +18,8 @@ export type Order = {
       priceCents: number;
       createdAt: string;
       updatedAt: string;
-    }[];
-  };
+    };
+  }[];
   createdAt: string;
   updatedAt: string;
 };
