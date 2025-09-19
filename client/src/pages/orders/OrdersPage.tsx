@@ -1,10 +1,17 @@
 import axios from 'axios';
-import { useState, useEffect, Fragment } from 'react';
+import { useState, useEffect } from 'react';
 import { Header } from '../../components/Header';
-import './OrdersPage.css';
 import { OrdersGrid } from './OrdersGrid';
+import type { Cart } from '../../types/cart.types';
+import type { LoadCart } from '../../types/loadCart.types';
+import './OrdersPage.css';
 
-export function OrdersPage({ cart, loadCart }) {
+type OrdersPageProps = {
+  cart: Cart;
+  loadCart: LoadCart;
+};
+
+export function OrdersPage({ cart, loadCart }: OrdersPageProps) {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
