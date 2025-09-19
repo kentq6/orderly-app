@@ -4,14 +4,21 @@ import { CheckoutHeader } from './CheckoutHeader';
 import { OrderSummary } from './OrderSummary';
 import { PaymentSummary } from './PaymentSummary';
 import './CheckoutPage.css';
+import type { Cart } from '../../types/cart.types';
+import type { LoadCart } from '../../types/loadCart.types';
 
-export function CheckoutPage({ cart, loadCart }) {
+type CheckoutPageProps = {
+  cart: Cart;
+  loadCart: LoadCart;
+};
+
+export function CheckoutPage({ cart, loadCart }: CheckoutPageProps) {
   const [deliveryOptions, setDeliveryOptions] = useState([]);
   const [paymentSummary, setPaymentSummary] = useState(null);
 
   useEffect(() => {
     const fetchDeliveryOptionsData = async () => {
-      let response = await axios.get(
+      const response = await axios.get(
         '/api/delivery-options?expand=estimatedDeliveryTime'
       );
       setDeliveryOptions(response.data);

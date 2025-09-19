@@ -1,30 +1,11 @@
 import axios from 'axios';
 import { useState, Fragment } from 'react';
 import { formatMoney } from "../../utils/money";
+import type { CartItem } from '../../types/cartItem.types';
 import type { LoadCart } from '../../types/loadCart.types';
 
 type CartItemDetailsProps = {
-  cartItem: {
-    id: number;
-    productId: string;
-    quantity: number;
-    deliveryOptionId: number;
-    createdAt: string;
-    updatedAt: string;
-    product: {
-      keywords: string[];
-      id: string;
-      image: string;
-      name: string;
-      rating: {
-        stars: number;
-        count: number;
-      };
-      priceCents: number;
-      createdAt: string;
-      updatedAt: string;
-    };
-  };
+  cartItem: CartItem;
   loadCart: LoadCart;
 };
 
