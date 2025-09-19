@@ -1,32 +1,9 @@
 import dayjs from "dayjs";
 import { formatMoney } from "../../utils/money";
+import type { Order } from "../../types/order.types";
 
 type OrderHeaderProp = {
-  order: {
-    id: string;
-    orderTimeMs: number;
-    totalCostCents: number;
-    products: {
-      productId: string;
-        quantity: number;
-        estimatedDeliveryTimeMs: number;
-        product: {
-          keywords: string[];
-          id: string;
-          image: string;
-          name: string;
-          rating: {
-            stars: number;
-            count: number;
-          };
-          priceCents: number;
-          createdAt: string;
-          updatedAt: string;
-        }[];
-      };
-    createdAt: string;
-    updatedAt: string;
-  };
+  order: Order;
 };
 
 export function OrderHeader({ order }: OrderHeaderProp) {
