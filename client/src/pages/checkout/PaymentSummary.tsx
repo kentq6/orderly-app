@@ -1,8 +1,21 @@
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 import { formatMoney } from '../../utils/money';
+import type { LoadCart } from '../../types/loadCart.types';
 
-export function PaymentSummary({ paymentSummary, loadCart }) {
+type PaymentSummaryProps = {
+  paymentSummary: {
+    totalItems: number;
+    productCostCents: number;
+    shippingCostCents: number;
+    totalCostBeforeTaxCents: number;
+    taxCents: number;
+    totalCostCents: number;
+  };
+  loadCart: LoadCart;
+};
+
+export function PaymentSummary({ paymentSummary, loadCart }: PaymentSummaryProps ) {
   const navigate = useNavigate();
 
   const createOrder = async () => {
