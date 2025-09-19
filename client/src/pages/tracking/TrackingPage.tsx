@@ -4,11 +4,17 @@ import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
 import { Header } from '../../components/Header';
 import { Link } from 'react-router';
+import type { Cart } from '../../types/cart.types';
+import type { Order } from '../../types/order.types';
 import './TrackingPage.css';
 
-export function TrackingPage({ cart }) {
+type TrackingPageProp = {
+  cart: Cart;
+};
+
+export function TrackingPage({ cart }: TrackingPageProp) {
   const { orderId, productId } = useParams();
-  const [order, setOrder] = useState(null);
+  const [order, setOrder] = useState<Order | null>(null);
 
   useEffect(() => {
     const fetchTrackingData = async () => {
@@ -24,6 +30,8 @@ export function TrackingPage({ cart }) {
   const orderProduct = order.products.find((orderProduct) => {
     return orderProduct.productId === productId;
   });
+
+  if (!orderProduct) { return null; }
 
   const totalDeliveryTimeMs = orderProduct.estimatedDeliveryTimeMs - order.orderTimeMs;
   const timePassedMs = dayjs().valueOf() - order.orderTimeMs;
