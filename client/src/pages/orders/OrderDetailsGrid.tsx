@@ -3,8 +3,15 @@ import dayjs from 'dayjs';
 import BuyAgainIcon from '../../assets/images/icons/buy-again.png'
 import { Fragment } from 'react';
 import { Link } from 'react-router';
+import type { Order } from '../../types/order.types';
+import type { LoadCart } from '../../types/loadCart.types';
 
-export function OrderDetailsGrid({ order, loadCart }) {
+type OrderDetailsGridProps = {
+  order: Order;
+  loadCart: LoadCart;
+};
+
+export function OrderDetailsGrid({ order, loadCart }: OrderDetailsGridProps) {
   return (
     <div className="order-details-grid">
       {order.products.map((orderProduct) => {
