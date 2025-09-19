@@ -1,7 +1,14 @@
 import { OrderHeader } from './OrderHeader';
 import { OrderDetailsGrid } from './OrderDetailsGrid';
+import type { Order } from '../../types/order.types';
+import type { LoadCart } from '../../types/loadCart.types';
 
-export function OrdersGrid({ orders, loadCart }) {
+type OrdersGridProps = {
+  orders: Order[];
+  loadCart: LoadCart;
+};
+
+export function OrdersGrid({ orders, loadCart }: OrdersGridProps) {
   return (
     <div className="orders-grid">
       {orders.map((order) => {
