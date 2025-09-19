@@ -16,7 +16,7 @@ export function TrackingPage({ cart }) {
       setOrder(response.data);
     }
     fetchTrackingData()
-      .catch((e) => { console.error('Failed to get tracking data: ', e) });
+      .catch((error) => { console.error('Failed to get tracking data: ', error) });
   }, [orderId]);
 
   if (!order) { return null; }

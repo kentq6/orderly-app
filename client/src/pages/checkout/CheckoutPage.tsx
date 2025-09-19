@@ -23,8 +23,8 @@ export function CheckoutPage({ cart, loadCart }: CheckoutPageProps) {
       );
       setDeliveryOptions(response.data);
     }
-    fetchDeliveryOptionsData().catch((e) => {
-      console.error('Failed to fetch checkout data: ', e)
+    fetchDeliveryOptionsData().catch((error) => {
+      console.error('Failed to fetch checkout data: ', error)
     });
   }, []);
 
@@ -33,8 +33,8 @@ export function CheckoutPage({ cart, loadCart }: CheckoutPageProps) {
       const response = await axios.get('/api/payment-summary');
       setPaymentSummary(response.data);
     }
-    fetchPaymentSummaryData().catch((e) => {
-      console.error('Failed to fetch payment summary data: ', e)
+    fetchPaymentSummaryData().catch((error) => {
+      console.error('Failed to fetch payment summary data: ', error)
     });
   }, [cart]);
 

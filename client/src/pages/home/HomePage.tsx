@@ -24,7 +24,7 @@ export function HomePage({ cart, loadCart }: HomePageProps) {
       setProducts(response.data);
     }
     getHomeData()
-      .catch((e) => { console.error('Failed to fetch products data: ', e) });
+      .catch((error) => { console.error('Failed to fetch products data: ', error) });
   }, [search]);
 
   return (

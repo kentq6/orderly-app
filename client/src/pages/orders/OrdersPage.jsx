@@ -13,7 +13,7 @@ export function OrdersPage({ cart, loadCart }) {
       setOrders(response.data);
     }
     fetchOrdersData()
-      .catch((e) => { console.error('Failed to fetch orders data: ', e) });
+      .catch((error) => { console.error('Failed to fetch orders data: ', error) });
   }, []);
 
   return (

@@ -18,7 +18,7 @@ function App() {
 
   useEffect(() => {
     loadCart().catch(
-      (e) => { console.error('Failed to fetch app data: ', e) });
+      (error) => { console.error('Failed to fetch app data: ', error) });
   }, []);
 
   return (
