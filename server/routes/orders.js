@@ -1,52 +1,48 @@
 import express from 'express';
-import { readJsonFile, writeJsonFile, findById, generateId } from '../utils/jsonHandler.js';
+import { Order } from '../models/Order.js';
+import { Product } from '../models/Product.js';
+import { DeliveryOption } from '../models/DeliveryOption.js';
+import { CartItem } from '../models/CartItem.js';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   const expand = req.query.expand;
-  let orders = readJsonFile('orders');
-
-  // Sort by most recent
-  orders.sort((a, b) => b.orderTimeMs - a.orderTimeMs);
+  let orders = await Order.unscoped().findAll({ order: [['orderTimeMs', 'DESC']] }); // Sort by most recent
 
   if (expand === 'products') {
-    const products = readJsonFile('products');
-    orders = orders.map(order => {
-      const orderProducts = order.products.map(product => {
-        const productDetails = findById(products, product.productId);
+    orders = await Promise.all(orders.map(async (order) => {
+      const products = await Promise.all(order.products.map(async (product) => {
+        const productDetails = await Product.findByPk(product.productId);
         return {
           ...product,
           product: productDetails
         };
-      });
+      }));
       return {
-        ...order,
-        products: orderProducts
+        ...order.toJSON(),
+        products
       };
-    });
+    }));
   }
 
   res.json(orders);
 });
 
-router.post('/', (req, res) => {
-  const cartItems = readJsonFile('cart');
+router.post('/', async (req, res) => {
+  const cartItems = await CartItem.findAll();
 
   if (cartItems.length === 0) {
     return res.status(400).json({ error: 'Cart is empty' });
   }
 
-  const products = readJsonFile('products');
-  const deliveryOptions = readJsonFile('deliveryOptions');
-
   let totalCostCents = 0;
-  const orderProducts = cartItems.map(item => {
-    const product = findById(products, item.productId);
+  const products = await Promise.all(cartItems.map(async (item) => {
+    const product = await Product.findByPk(item.productId);
     if (!product) {
       throw new Error(`Product not found: ${item.productId}`);
     }
-    const deliveryOption = findById(deliveryOptions, item.deliveryOptionId);
+    const deliveryOption = await DeliveryOption.findByPk(item.deliveryOptionId);
     if (!deliveryOption) {
       throw new Error(`Invalid delivery option: ${item.deliveryOptionId}`);
     }
@@ -59,51 +55,41 @@ router.post('/', (req, res) => {
       quantity: item.quantity,
       estimatedDeliveryTimeMs
     };
-  });
+  }));
 
   totalCostCents = Math.round(totalCostCents * 1.1);
 
-  const order = {
-    id: generateId(),
+  const order = await Order.create({
     orderTimeMs: Date.now(),
     totalCostCents,
-    products: orderProducts
-  };
+    products
+  });
 
-  // Add order to orders file
-  const orders = readJsonFile('orders');
-  orders.push(order);
-  writeJsonFile('orders', orders);
-
-  // Clear cart
-  writeJsonFile('cart', []);
+  await CartItem.destroy({ where: {} });
 
   res.status(201).json(order);
 });
 
-router.get('/:orderId', (req, res) => {
+router.get('/:orderId', async (req, res) => {
   const { orderId } = req.params;
   const expand = req.query.expand;
 
-  const orders = readJsonFile('orders');
-  let order = findById(orders, orderId);
-  
+  let order = await Order.findByPk(orderId);
   if (!order) {
     return res.status(404).json({ error: 'Order not found' });
   }
 
   if (expand === 'products') {
-    const products = readJsonFile('products');
-    const orderProducts = order.products.map(product => {
-      const productDetails = findById(products, product.productId);
+    const products = await Promise.all(order.products.map(async (product) => {
+      const productDetails = await Product.findByPk(product.productId);
       return {
         ...product,
         product: productDetails
       };
-    });
+    }));
     order = {
-      ...order,
-      products: orderProducts
+      ...order.toJSON(),
+      products
     };
   }
 
