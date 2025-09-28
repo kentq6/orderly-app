@@ -75,12 +75,7 @@ try {
   console.log('JSON files created with default data.');
 }
 
-// Export the app for Vercel
-export default app;
-
-// Start server only when running locally
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-  });
-}
+// Start server
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
