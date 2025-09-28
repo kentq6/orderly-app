@@ -8,8 +8,7 @@
     "start": "node server.js",
     "dev": "nodemon server.js",
     "zip": "node zipFiles.js",
-    "postinstall": "patch-package",
-    "vercel-build": "echo 'No build step required for server'"
+    "postinstall": "patch-package"
   },
   "keywords": [],
   "author": "",
