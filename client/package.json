@@ -8,8 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "vitest",
-    "vercel-build": "npm run build"
+    "test": "vitest"
   },
   "dependencies": {
     "react": "^19.1.0",
