@@ -8,7 +8,7 @@ export default defineConfig({
       plugins: [['babel-plugin-react-compiler', { target: '19' }]]
     }
   })],
-  server: { // server proxy configuration using Vite
+  server: { // server proxy configuration using Vite (development only)
     proxy: {
       '/api': {
         target: 'http://localhost:3000'

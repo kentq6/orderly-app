@@ -2,17 +2,13 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { sequelize } from './models/index.js';
 import productRoutes from './routes/products.js';
 import deliveryOptionRoutes from './routes/deliveryOptions.js';
 import cartItemRoutes from './routes/cartItems.js';
 import orderRoutes from './routes/orders.js';
 import resetRoutes from './routes/reset.js';
 import paymentSummaryRoutes from './routes/paymentSummary.js';
-import { Product } from './models/Product.js';
-import { DeliveryOption } from './models/DeliveryOption.js';
-import { CartItem } from './models/CartItem.js';
-import { Order } from './models/Order.js';
+import { writeJsonFile, readJsonFile } from './utils/jsonHandler.js';
 import { defaultProducts } from './defaultData/defaultProducts.js';
 import { defaultDeliveryOptions } from './defaultData/defaultDeliveryOptions.js';
 import { defaultCart } from './defaultData/defaultCart.js';
@@ -60,43 +56,23 @@ app.use((err, req, res, next) => {
 });
 /* eslint-enable no-unused-vars */
 
-// Sync database and load default data if none exist
-await sequelize.sync();
-
-const productCount = await Product.count();
-if (productCount === 0) {
-  const timestamp = Date.now();
-
-  const productsWithTimestamps = defaultProducts.map((product, index) => ({
-    ...product,
-    createdAt: new Date(timestamp + index),
-    updatedAt: new Date(timestamp + index)
-  }));
-
-  const deliveryOptionsWithTimestamps = defaultDeliveryOptions.map((option, index) => ({
-    ...option,
-    createdAt: new Date(timestamp + index),
-    updatedAt: new Date(timestamp + index)
-  }));
-
-  const cartItemsWithTimestamps = defaultCart.map((item, index) => ({
-    ...item,
-    createdAt: new Date(timestamp + index),
-    updatedAt: new Date(timestamp + index)
-  }));
-
-  const ordersWithTimestamps = defaultOrders.map((order, index) => ({
-    ...order,
-    createdAt: new Date(timestamp + index),
-    updatedAt: new Date(timestamp + index)
-  }));
-
-  await Product.bulkCreate(productsWithTimestamps);
-  await DeliveryOption.bulkCreate(deliveryOptionsWithTimestamps);
-  await CartItem.bulkCreate(cartItemsWithTimestamps);
-  await Order.bulkCreate(ordersWithTimestamps);
-
-  console.log('Default data added to the database.');
+// Initialize JSON files with default data if they don't exist or are empty
+try {
+  const products = readJsonFile('products');
+  if (products.length === 0) {
+    writeJsonFile('products', defaultProducts);
+    writeJsonFile('deliveryOptions', defaultDeliveryOptions);
+    writeJsonFile('cart', defaultCart);
+    writeJsonFile('orders', defaultOrders);
+    console.log('Default data added to JSON files.');
+  }
+} catch (error) {
+  // If files don't exist, create them with default data
+  writeJsonFile('products', defaultProducts);
+  writeJsonFile('deliveryOptions', defaultDeliveryOptions);
+  writeJsonFile('cart', defaultCart);
+  writeJsonFile('orders', defaultOrders);
+  console.log('JSON files created with default data.');
 }
 
 // Start server

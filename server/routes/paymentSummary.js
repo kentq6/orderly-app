@@ -1,19 +1,20 @@
 import express from 'express';
-import { CartItem } from '../models/CartItem.js';
-import { Product } from '../models/Product.js';
-import { DeliveryOption } from '../models/DeliveryOption.js';
+import { readJsonFile, findById } from '../utils/jsonHandler.js';
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
-  const cartItems = await CartItem.findAll();
+router.get('/', (req, res) => {
+  const cartItems = readJsonFile('cart');
+  const products = readJsonFile('products');
+  const deliveryOptions = readJsonFile('deliveryOptions');
+  
   let totalItems = 0;
   let productCostCents = 0;
   let shippingCostCents = 0;
 
   for (const item of cartItems) {
-    const product = await Product.findByPk(item.productId);
-    const deliveryOption = await DeliveryOption.findByPk(item.deliveryOptionId);
+    const product = findById(products, item.productId);
+    const deliveryOption = findById(deliveryOptions, item.deliveryOptionId);
     totalItems += item.quantity;
     productCostCents += product.priceCents * item.quantity;
     shippingCostCents += deliveryOption.priceCents;
